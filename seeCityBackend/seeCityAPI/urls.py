@@ -10,6 +10,8 @@ from .views import ProposalDeleteView
 from .views import IsStaffRetrievalView
 from .views import EvaluationProposalView
 from .views import EvaluationRetrievalView
+from .views import ProposalLikeCountAPIView
+from .views import ProposalDislikeCountAPIView
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
@@ -28,7 +30,9 @@ urlpatterns = [
     path('comment/<int:id_proposal>/', CommentsListAPIView.as_view(), name='comment-list'),
 
     path('evaluate-proposal/', EvaluationProposalView.as_view(), name='evaluate-proposal'),
-    path('evaluate-proposal/<int:id_proposal>/<str:login>/', EvaluationRetrievalView.as_view(), name='proposal-evaluate'),
+    path('evaluate-proposal/<int:id_proposal>/<str:login>/', EvaluationRetrievalView.as_view(), name='proposal-evaluate'),\
+    path('proposal-count-like/<int:id_proposal>/', ProposalLikeCountAPIView.as_view(), name='proposal-evaluate'),
+    path('proposal-count-dislike/<int:id_proposal>/', ProposalDislikeCountAPIView.as_view(), name='proposal-evaluate'),
     
     
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),

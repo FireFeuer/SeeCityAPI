@@ -179,9 +179,24 @@ class EvaluationRetrievalView(generics.GenericAPIView):
         try:
             proposal = EvaluationProposal.objects.get(id_proposal=id_proposal, login=login)
         except EvaluationProposal.DoesNotExist:
-            return Response([])  # Возвращаем пустой список, если объект не найден
+            return Response([]) 
 
         serializer = self.serializer_class(proposal)
-        return Response(serializer.data)  # Возвращаем данные объекта в виде списка
+        return Response(serializer.data)  
         
+
+
+class ProposalLikeCountAPIView(APIView):
+
+    def get(self, request, id_proposal):
+        count = EvaluationProposal.objects.filter(id_proposal=id_proposal, evaluation=2).count()
+
+        return Response({'count': count})
+    
+class ProposalDislikeCountAPIView(APIView):
+
+    def get(self, request, id_proposal):
+        count = EvaluationProposal.objects.filter(id_proposal=id_proposal, evaluation=1).count()
+
+        return Response({'count': count})
         

@@ -49,9 +49,3 @@ class EvaluationProposalSerializer(serializers.ModelSerializer):
         model = EvaluationProposal
 
         fields = ['id', 'evaluation', 'login', 'id_proposal']
-
-# class EvaluationProposalViewSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = EvaluationProposal
-
-#         fields = ['id', 'login', 'id_proposal']
