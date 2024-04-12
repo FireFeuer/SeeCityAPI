@@ -8,7 +8,7 @@ class Proposal(models.Model):
     image = models.CharField(max_length=400)
     coordinates = models.CharField(max_length=1000)
     relevance = models.IntegerField()
-    date_creation = models.DateTimeField()
+    date_creation = models.DateField()
     date_non_relevance = models.DateTimeField()
     is_delete = models.IntegerField()
 

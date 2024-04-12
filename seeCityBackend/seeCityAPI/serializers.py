@@ -12,7 +12,7 @@ class ProposalSerializer(serializers.ModelSerializer):
     class Meta:
         model = Proposal
         # fields = ['login', 'name', 'description', 'coordinates', 'relevance', 'date_creation']
-        fields = ['id', 'name', 'description', 'coordinates', 'login', 'relevance', 'is_delete']
+        fields = ['id', 'name', 'description', 'coordinates', 'login', 'relevance', 'date_creation', 'is_delete']
 
 class ProposalUpdateSerializer(serializers.ModelSerializer):
     class Meta:

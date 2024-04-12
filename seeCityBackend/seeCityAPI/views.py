@@ -57,7 +57,7 @@ class ProposalDeleteView(generics.UpdateAPIView):
         
 class CommentCreateView(APIView):
     serializer_class = CommentSerializer
-    permission_classes = (IsAuthenticated,)
+    # permission_classes = (IsAuthenticated,)
 
     def post(self, request):
         serializer = CommentSerializer(data=request.data)
