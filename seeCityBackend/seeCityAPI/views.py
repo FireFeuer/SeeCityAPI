@@ -41,7 +41,7 @@ User = get_user_model()
 
 class ProposalCreateView(APIView):
     serializer_class = ProposalSerializer
-    # permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAuthenticated,)
 
     def post(self, request):
         serializer = ProposalSerializer(data=request.data)
