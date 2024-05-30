@@ -10,6 +10,7 @@ class Proposal(models.Model):
     date_creation = models.DateField()
 
     is_delete = models.IntegerField()
+    category = models.IntegerField()
 
     def __str__(self):
         return self.id_proposal

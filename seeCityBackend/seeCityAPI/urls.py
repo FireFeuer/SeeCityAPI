@@ -24,11 +24,11 @@ from .views import NotificationListView
 from .views import ProposalLoginListView
 from .views import IsActiveUpdateView
 from .views import ProposalNameCoordinatesViewSet
+from .views import ProposalUpdateCategoryAPIView
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
 )
-
 
 
 urlpatterns = [
@@ -38,6 +38,7 @@ urlpatterns = [
     path('proposal/create/', ProposalCreateView.as_view(), name='proposal-create'),
     path('proposal/delete/<int:pk>/', ProposalDeleteView.as_view(), name='proposal-list'),
     path('proposal/put/<int:pk>/', ProposalUpdateAPIView.as_view(), name='proposal-list'),
+    path('proposal/put-category/<int:pk>/', ProposalUpdateCategoryAPIView.as_view(), name='proposal-list'),
     path('proposal/coord/<str:name>/', ProposalNameCoordinatesViewSet.as_view(), name='proposal-coordinates'),
 
     path('comment/create/', CommentCreateView.as_view(), name='comment-create'),

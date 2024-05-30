@@ -16,6 +16,7 @@ from .serializers import NotificationSerializer
 from .serializers import EmailVerificationCodeSerializer
 from .serializers import UserBlockSerializer
 from .serializers import CommentDeleteSerializer
+from .serializers import ProposalUpdateCategorySerializer
 from rest_framework import viewsets
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -168,6 +169,23 @@ class ProposalUpdateAPIView(generics.UpdateAPIView):
 
         return Response({"relevance": proposal.relevance})
     
+class ProposalUpdateCategoryAPIView(generics.UpdateAPIView):
+ 
+    queryset = Proposal.objects.all()
+    # permission_classes = (IsAuthenticated,)
+    serializer_class = ProposalUpdateCategorySerializer
+    permission_classes = (AllowAny,)
+
+    def update(self, request, *args, **kwargs):
+        proposal = self.get_object()
+        data = request.data
+        category = data['category']
+        proposal.category = category
+
+        proposal.save()
+
+        return Response({"category": proposal.category})
+    
 
 class RegistrationView(APIView):
     serializer_class = UserSerializer
@@ -178,11 +196,12 @@ class RegistrationView(APIView):
         username = data['username']
         email = data['email']
         password = data['password']
+        is_staff = data['is_staff']
         is_superuser = True
         is_active = True
 
         try:
-            user = User.objects.create_user(username=username, email=email, password= make_password(password), is_superuser=is_superuser, is_active=is_active)
+            user = User.objects.create_user(username=username, email=email, password= make_password(password), is_superuser=is_superuser, is_active=is_active, is_staff=is_staff)
             user.set_password(password)
             user.save()
             return Response({'message': 'User created successfully.'})

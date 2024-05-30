@@ -16,12 +16,17 @@ User = get_user_model()
 class ProposalSerializer(serializers.ModelSerializer):
     class Meta:
         model = Proposal
-        fields = ['id', 'name', 'description', 'coordinates', 'login', 'relevance', 'date_creation', 'is_delete']
+        fields = ['id', 'name', 'description', 'coordinates', 'login', 'relevance', 'date_creation', 'is_delete', 'category']
 
 class ProposalUpdateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Proposal
         fields = ['relevance']
+
+class ProposalUpdateCategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Proposal
+        fields = ['category']
 
 class ProposalDeleteSerializer(serializers.ModelSerializer):
     class Meta:
@@ -38,7 +43,7 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
 
-        fields = ['id', 'username', 'email', 'password']
+        fields = ['id', 'username', 'email', 'password', 'is_staff']
 
 class IsStaffSerializer(serializers.ModelSerializer):
     class Meta:

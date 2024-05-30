@@ -11,7 +11,7 @@ SECRET_KEY = 'django-insecure-dwf123m^yyq$=7!&*t2!%u0i)a$fh%*@h!#_pm+85_uyaxp(6j
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'ignisfeuerf@gmail.com'
@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     'seeCityAPI',
     'rest_framework',
     'rest_framework_simplejwt',
+    'corsheaders',
 ]
 
 
@@ -45,6 +46,7 @@ REST_FRAMEWORK = {
 }
 
 MIDDLEWARE = [
+    "django.middleware.security.SecurityMiddleware",
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -52,6 +54,32 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "corsheaders.middleware.CorsMiddleware",
+]
+
+CORS_ORIGIN_ALLOW_ALL = True
+
+CORS_ALLOW_CREDENTIALS = True
+
+
+CORS_ALLOW_METHODS = [
+    "DELETE",
+    "GET",
+    "OPTIONS",
+    "PATCH",
+    "POST",
+    "PUT",
+]
+CORS_ALLOW_HEADERS = [
+    "accept",
+    "accept-encoding",
+    "authorization",
+    "content-type",
+    "dnt",
+    "origin",
+    "user-agent",
+    "x-csrftoken",
+    "x-requested-with",
 ]
 
 ROOT_URLCONF = 'seeCityAPI.urls'
